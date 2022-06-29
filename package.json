@@ -1,0 +1,24 @@
+{
+  "name": "social-api",
+  "version": "1.0.0",
+  "description": "This is the social api for challenge 18 using mongoose, mongodb, express",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelissaLycan/Social-API.git"
+  },
+  "author": "Melissa Lycan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MelissaLycan/Social-API/issues"
+  },
+  "homepage": "https://github.com/MelissaLycan/Social-API#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.1"
+  }
+}
