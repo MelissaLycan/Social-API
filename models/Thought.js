@@ -1,5 +1,11 @@
 const { Schema, Types } = require("mongoose");
 
+const reactionSchema = new Schema([
+  {
+    type: Schema.Types.ObjectId,
+    ref: "Reaction",
+  },
+]);
 const thoughtSchema = new Schema(
   {
     thoughtText: {
