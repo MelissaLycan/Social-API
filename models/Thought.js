@@ -12,15 +12,9 @@ const reactionSchema = new Schema([
 
     reactionBody: {
       type: String,
-      required: true,
       maxlength: 280,
     },
-
-    username: {
-      type: String,
-      required: true,
-    },
-
+    thoughtId: { type: Schema.Types.ObjectId, ref: "Thought" },
     createdAt: {
       type: Date,
       // Set default value to the current timestamp
@@ -31,6 +25,7 @@ const reactionSchema = new Schema([
   },
   {
     toJSON: {
+      getters: true,
       virtuals: true,
     },
     id: false,
@@ -38,6 +33,12 @@ const reactionSchema = new Schema([
 ]);
 const thoughtSchema = new Schema(
   {
+    thoughtId: {
+      // Mongoose's ObjectId data type
+      type: Schema.Types.ObjectId,
+      // Default value is set to a new ObjectId
+      default: () => new Types.ObjectId(),
+    },
     thoughtText: {
       type: String,
       required: true,
@@ -57,6 +58,7 @@ const thoughtSchema = new Schema(
   },
   {
     toJSON: {
+      getters: true,
       virtuals: true,
     },
     id: false,
@@ -67,5 +69,5 @@ thoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
 
-const Thought = model("thoughts", thoughtSchema);
+const Thought = model("thought", thoughtSchema);
 module.exports = Thought;
