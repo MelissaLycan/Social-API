@@ -1,16 +1,16 @@
+const { Thought, User } = require("../../models");
+const mongoose = require("mongoose");
 const router = require("express").Router();
-const { Thought } = require("../../models/");
 
-Thought,
-  ({
-    getThoughts,
-    getSingleThought,
-    createThought,
-    updateThought,
-    deleteThought,
-    addReaction,
-    removeReaction,
-  } = require("../../controllers/thoughtController.js"));
+const {
+  getThoughts,
+  getSingleThought,
+  createThought,
+  updateThought,
+  deleteThought,
+  addReaction,
+  removeReaction,
+} = require("../../controllers/thoughtController.js");
 
 // /api/thought
 router.route("/").get(getThoughts).post(createThought);
