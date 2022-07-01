@@ -28,7 +28,7 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 
 ## Demo
 
-![Demo of GET routes to return all users and all thoughts being tested in Insomnia.](./Assets/Social-API-Demo.mp4)
+![Demo of GET routes to return all users and all thoughts being tested in Insomnia.](./assets/Social-API-Demo.mp4)
 
 ## GitHub
 
