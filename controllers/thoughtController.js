@@ -60,34 +60,32 @@ const thoughtController = {
       .catch((err) => res.status(500).json(err));
   },
 
-  addReaction(req, res) {
-    console.log("You are adding a reaction");
-    console.log(req.body);
-    Thought.findOneAndUpdate(
-      { thoughtId: req.params.thoughtId },
-      { $addToSet: { reactions: req.body } },
-      { runValidators: true, new: true }
-    )
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: "No user found with that ID :(" })
-          : res.json(user)
-      )
-      .catch((err) => res.status(500).json(err));
+  addReaction: async (req, res) => {
+    try {
+      const reaction = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $push: { reactions: req.body } },
+        { new: true }
+      );
+      res.json(reaction);
+    } catch (err) {
+      return res.status(500).json(err);
+    }
   },
   // Remove friend from a user
-  removeReaction(req, res) {
-    Thought.findOneAndUpdate(
-      { thoughtId: req.params.thoughtId },
-      { $pull: { reactions: { reactionId: req.params.reactionId } } },
-      { runValidators: true, new: true }
-    )
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: "No user found with that ID :(" })
-          : res.json(user)
-      )
-      .catch((err) => res.status(500).json(err));
+  removeReaction: async (req, res) => {
+    try {
+      console.log(req.body);
+      const deleteReaction = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: { _id: req.params.reactionId } } },
+        { new: true }
+      );
+      res.json(deleteReaction);
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json(err);
+    }
   },
 };
 

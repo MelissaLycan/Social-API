@@ -69,7 +69,7 @@ const userController = {
     try {
       const friends = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $push: { friends: req.params.friendId } },
+        { $addToSet: { friends: new ObjectId(req.body._id) } },
         { new: true }
       );
       res.json(friends);
@@ -83,11 +83,11 @@ const userController = {
   removeFriend: async (req, res) => {
     try {
       const deleteFriend = await User.findOneAndUpdate(
-        { username: req.params.username },
+        { _id: req.params.userId },
         { $pull: { friends: req.params.friendId } },
         { new: true }
       );
-      res.json({ message: "No user found with that ID :(" });
+      res.json(deleteFriend);
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
