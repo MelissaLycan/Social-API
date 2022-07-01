@@ -3,9 +3,6 @@ const { Schema, model, Types } = require("mongoose");
 const userSchema = new Schema(
   {
     //   _id: { type: Schema.Types.ObjectId },
-    friendId: {
-      type: Schema.Types.ObjectId,
-    },
     username: {
       type: String,
       unique: true,

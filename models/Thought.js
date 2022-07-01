@@ -8,13 +8,6 @@ const reactionSchema = new Schema([
   //   ref: "thoughts",
   // },
   {
-    reactionId: {
-      // Mongoose's ObjectId data type
-      type: Schema.Types.ObjectId,
-      // Default value is set to a new ObjectId
-      default: () => new Types.ObjectId(),
-    },
-
     reactionBody: {
       type: String,
       maxlength: 280,
