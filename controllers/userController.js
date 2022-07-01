@@ -65,11 +65,11 @@ const userController = {
   },
 
   // Add an Friend to a user
-  addFriend: async ({ params }, res) => {
+  addFriend: async (req, res) => {
     try {
       const friends = await User.findOneAndUpdate(
-        { _id: params.userId },
-        { $push: { friends: params.friendId } },
+        { _id: req.params.userId },
+        { $push: { friends: req.params.friendId } },
         { new: true }
       );
       res.json(friends);
