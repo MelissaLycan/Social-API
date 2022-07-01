@@ -2,6 +2,10 @@ const { Schema, model, Types } = require("mongoose");
 // Schema to create User model
 const userSchema = new Schema(
   {
+    //   _id: { type: Schema.Types.ObjectId },
+    friendId: {
+      type: Schema.Types.ObjectId,
+    },
     username: {
       type: String,
       unique: true,
@@ -20,13 +24,13 @@ const userSchema = new Schema(
     thoughts: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Thought",
+        ref: "thoughts",
       },
     ],
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: "users",
       },
     ],
   },

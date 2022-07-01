@@ -20,13 +20,19 @@ const thoughtController = {
       .catch((err) => res.status(500).json(err));
   },
   // Create a thought
-  createThought(req, res) {
-    Thought.create(req.body)
-      .then((thought) => res.json(thought))
-      .catch((err) => {
-        console.log(err);
-        return res.status(500).json(err);
-      });
+  createThought: async (req, res) => {
+    try {
+      const thoughts = await Thought.create(req.body);
+      await User.findOneAndUpdate(
+        { username: req.body.username },
+        { $addToSet: { thoughts: thoughts._id } },
+        { runValidators: true, new: true }
+      );
+      res.json(thoughts);
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json(err);
+    }
   },
   // Delete a thought
   deleteThought(req, res) {

@@ -1,4 +1,4 @@
-const addDateSuffix = (date) => {
+const addDate = (date) => {
   let dateStr = date.toString();
 
   // get last char of date string
@@ -14,3 +14,4 @@ const addDateSuffix = (date) => {
     dateStr = `${dateStr}th`;
   }
 };
+module.exports = addDate;

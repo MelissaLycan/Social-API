@@ -19,13 +19,13 @@ const reactionSchema = new Schema([
       type: String,
       maxlength: 280,
     },
-    thoughtId: { type: Schema.Types.ObjectId, ref: "thoughts" },
+    // thoughtId: { type: Schema.Types.ObjectId, ref: "thoughts" },
     createdAt: {
       type: Date,
       // Set default value to the current timestamp
       default: Date.now,
       // Use a getter method to format the timestamp on query
-      get: (timestamp) => dateFormat(timestamp),
+      get: (timestamp) => moment().format(timestamp),
     },
   },
   {
@@ -38,12 +38,6 @@ const reactionSchema = new Schema([
 ]);
 const thoughtSchema = new Schema(
   {
-    thoughtId: {
-      // Mongoose's ObjectId data type
-      type: Schema.Types.ObjectId,
-      // Default value is set to a new ObjectId
-      default: () => new Types.ObjectId(),
-    },
     thoughtText: {
       type: String,
       required: true,
@@ -54,7 +48,7 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    reactions: [{ reactionSchema }],
+    reactions: [reactionSchema],
     createdAt: {
       type: Date,
       default: Date.now,
@@ -66,7 +60,6 @@ const thoughtSchema = new Schema(
       getters: true,
       virtuals: true,
     },
-    id: false,
   }
 );
 
